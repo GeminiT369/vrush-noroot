@@ -1,0 +1,3 @@
+tunnel: 93c44247-abf1-4359-81a3-9e2e7e73cae1
+credentials-file: ./93c44247-abf1-4359-81a3-9e2e7e73cae1.json
+origincert: ./cert.pem
