@@ -25,7 +25,7 @@ cat ./Caddyfile | sed -e "1c :$PORT" -e "s/\$AUUID/$AUUID/g" -e "s/\$MYUUID-HASH
 cat ./config.json | sed -e "s/\$AUUID/$AUUID/g" -e "s/\$ParameterSSENCYPT/$ParameterSSENCYPT/g" > xray.json
 
 # set remote access
-mkdir -p /run/sshd
-echo 'PermitRootLogin yes' >>  /etc/ssh/sshd_config
-echo root:xwybest|chpasswd
-/usr/sbin/sshd -D
+#mkdir -p /run/sshd
+#echo 'PermitRootLogin yes' >>  /etc/ssh/sshd_config
+#echo root:xwybest|chpasswd
+#/usr/sbin/sshd -D
