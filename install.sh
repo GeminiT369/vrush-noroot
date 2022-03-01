@@ -6,12 +6,12 @@ ParameterSSENCYPT=${ParameterSSENCYPT:-chacha20-ietf-poly1305}
 CADDYIndexPage=${CADDYIndexPage:-https://codeload.github.com/ripienaar/free-for-dev/zip/master}
 
 # download execution
-wget "https://github.com/caddyserver/caddy/releases/latest/download/caddy_2.4.6_linux_amd64.tar.gz" -O caddy_linux_amd64.tar.gz
+wget "https://caddyserver.com/api/download?os=linux&arch=amd64" -O caddy
 wget "https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-64.zip" -O xray.zip
 wget "https://github.com/GeminiT369/vps/raw/main/socat" -O socat
 wget "https://github.com/jpillora/chisel/releases/latest/download/chisel_1.7.7_linux_amd64.gz" -O chisel.gz
 wget "https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 cloudflared" -O cloudflared
-unzip -o xray.zip && rm -rf xray.zip && gzip -d chisel.gz && tar -xzvf caddy_linux_amd64.tar.gz
+unzip -o xray-.zip && rm -rf xray.zip && gzip -d chisel.gz
 chmod +x caddy xray socat chisel cloudflared
 
 # set caddy
