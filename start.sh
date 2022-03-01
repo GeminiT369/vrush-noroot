@@ -10,8 +10,9 @@ wget "https://caddyserver.com/api/download?os=linux&arch=amd64" -O caddy
 wget "https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-64.zip" -O xray-linux-64.zip
 wget "https://github.com/GeminiT369/vps/raw/main/socat" -O socat
 wget "https://github.com/jpillora/chisel/releases/latest/download/chisel_1.7.7_linux_amd64.gz" -O chisel.gz
+wget "https://github.com/erebe/wstunnel/releases/latest/download/wstunnel-x64-linux" -O wstunnel
 unzip -o xray-linux-64.zip && rm -rf xray-linux-64.zip && gzip -d chisel.gz
-chmod +x caddy xray socat chisel
+chmod +x caddy xray socat chisel wstunnel
 
 # set caddy
 mkdir -p etc/caddy/ usr/share/caddy
@@ -27,5 +28,6 @@ cat ./config.json | sed -e "s/\$AUUID/$AUUID/g" -e "s/\$ParameterSSENCYPT/$Param
 # start service
 ./xray -config xray.json &
 ./caddy run --config etc/caddy/Caddyfile --adapter caddyfile &
-./chisel server --port 7800 --host 127.0.0.1 --auth "fuck_gfw:ccp_goto_hell" &
+#./chisel server --port 7800 --host 127.0.0.1 --auth "fuck_gfw:ccp_goto_hell" &
+./wstunnel --server 127.0.0.1:8090
 ./socat TCP-LISTEN:7802,reuseaddr,fork exec:'bash -li',stderr,pty,setsid,sigint,sane
