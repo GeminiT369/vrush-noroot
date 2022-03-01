@@ -43,7 +43,7 @@ route /chisel {
 }
 
 route /wstunnel/* {
-	header  Connection  *Upgrade* 
-	header  Upgrade     websocket 
+	#header  Connection  *Upgrade* 
+	#header  Upgrade     websocket 
 	reverse_proxy localhost:8090
 }
