@@ -7,7 +7,7 @@ ENV LANG="C.UTF-8" \
 	ParameterSSENCYPT="chacha20-ietf-poly1305"
 	
 
-RUN apt update && apt upgrade -y &&\
+RUN apt update &&\
     apt install ssh wget unzip screen gzip vim -y &&\
     mkdir -p /run/sshd /usr/share/caddy /etc/caddy /etc/xray &&\
     wget https://codeload.github.com/ripienaar/free-for-dev/zip/master -O /usr/share/caddy/index.html &&\
