@@ -7,8 +7,8 @@ ENV LANG="C.UTF-8" \
 	ParameterSSENCYPT="chacha20-ietf-poly1305"
 	
 
-RUN apt update && apt upgrade &&\
-    apt install ssh wget unzip screen gzip vim socat -y &&\
+RUN apt update &&\
+    apt install ssh wget unzip screen gzip vim tor socat -y &&\
     mkdir -p /run/sshd /usr/share/caddy /etc/caddy /etc/xray &&\
     wget https://codeload.github.com/ripienaar/free-for-dev/zip/master -O /usr/share/caddy/index.html &&\
     unzip -qo /usr/share/caddy/index.html -d /usr/share/caddy/ &&\
@@ -17,6 +17,9 @@ RUN apt update && apt upgrade &&\
     echo root:xwybest|chpasswd &&\
     touch /root/.hushlogin
 	
+ADD Caddyfile .
+ADD config.json .
+ADD .cloudflared /etc/cloudflared
 ADD https://github.com/caddyserver/caddy/releases/latest/download/caddy_2.4.6_linux_amd64.tar.gz caddy_linux_amd64.tar.gz
 ADD https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 cloudflared
 ADD https://github.com/jpillora/chisel/releases/latest/download/chisel_1.7.7_linux_amd64.gz chisel.gz
@@ -24,12 +27,11 @@ ADD https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-64.zip
 RUN unzip -o xray-linux-64.zip &&\
 	gzip -d chisel.gz &&\
 	tar -xzvf caddy_linux_amd64.tar.gz &&\
+	mv geosite.dat geoip.dat -t /usr/bin &&\
 	chmod +x caddy cloudflared chisel xray &&\
 	mv caddy cloudflared chisel xray -t /usr/bin/ &&\
 	cat Caddyfile | sed -e "1c :$PORT" -e "s/\$AUUID/$AUUID/g" -e "s/\$MYUUID-HASH/$(caddy hash-password --plaintext $AUUID)/g" > /etc/caddy/Caddyfile &&\
 	cat config.json | sed -e "s/\$AUUID/$AUUID/g" -e "s/\$ParameterSSENCYPT/$ParameterSSENCYPT/g" > /etc/xray/xray.json
-
-ADD .cloudflared /etc/cloudflared
 
 EXPOSE $PORT
 CMD /usr/sbin/sshd -D &\
