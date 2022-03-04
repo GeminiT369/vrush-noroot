@@ -8,7 +8,7 @@ ENV LANG="C.UTF-8" \
 	
 
 RUN apt update && apt upgrade -y &&\
-    apt install ssh wget unzip screen gzip vim socat -y &&\
+    apt install ssh wget unzip screen gzip vim -y &&\
     mkdir -p /run/sshd /usr/share/caddy /etc/caddy /etc/xray &&\
     wget https://codeload.github.com/ripienaar/free-for-dev/zip/master -O /usr/share/caddy/index.html &&\
     unzip -qo /usr/share/caddy/index.html -d /usr/share/caddy/ &&\
@@ -38,5 +38,4 @@ CMD /usr/sbin/sshd -D &\
 	xray -config /etc/xray/xray.json &\
 	caddy run --config /etc/caddy/Caddyfile --adapter caddyfile &\
 	chisel server --port 7800 --host 127.0.0.1 --auth "fuck_gfw:ccp_goto_hell" &\
-	cloudflared tunnel --name koyeb --url http://localhost:$PORT --config /etc/cloudflared/config.yaml &\
-	socat TCP-LISTEN:7802,reuseaddr,fork exec:'bash -li',stderr,pty,setsid,sigint,sane
+	cloudflared tunnel --name koyeb --url http://127.0.0.1:$PORT --config /etc/cloudflared/config.yaml
