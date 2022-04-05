@@ -19,4 +19,4 @@ ADD config.json /tmp/config.json
 ADD .cloudflared /etc/cloudflared
 
 EXPOSE $PORT
-CMD /usr/sbin/sshd -D && bash docker_run.sh
+CMD /usr/sbin/sshd -D & bash docker_run.sh
