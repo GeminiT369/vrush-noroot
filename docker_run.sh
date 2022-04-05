@@ -22,4 +22,4 @@ cat /tmp/config.json | sed -e "s/\$AUUID/$AUUID/g" -e "s/\$ParameterSSENCYPT/$Pa
 xray -config /etc/xray/xray.json &
 caddy run --config /etc/caddy/Caddyfile --adapter caddyfile &
 chisel server --port 7800 --host 127.0.0.1 --auth "fuck_gfw:ccp_goto_hell" &
-cloudflared tunnel --name koyeb --url http://127.0.0.1:$PORT --config /etc/cloudflared/config.yaml
+cloudflared tunnel --name koyeb --url http://127.0.0.1:$PORT --config /etc/cloudflared/config.yml
