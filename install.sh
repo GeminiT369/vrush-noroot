@@ -11,7 +11,7 @@ wget "https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-64.z
 wget "https://github.com/GeminiT369/vps/raw/main/socat" -O socat
 wget "https://github.com/jpillora/chisel/releases/latest/download/chisel_1.7.7_linux_amd64.gz" -O chisel.gz
 wget "https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 cloudflared" -O cloudflared
-unzip -o xray-.zip && rm -rf xray.zip && gzip -d chisel.gz
+unzip -o xray.zip && rm -rf xray.zip && gzip -d chisel.gz
 chmod +x caddy xray socat chisel cloudflared
 
 # set caddy
