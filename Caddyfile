@@ -1,5 +1,5 @@
 :$PORT
-root * usr/share/caddy
+root * /usr/share/caddy
 file_server browse
 
 log { output stdout }
